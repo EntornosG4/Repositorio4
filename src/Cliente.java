@@ -1,5 +1,3 @@
-package pro06ficheros;
-
 /**
  * Clase Cliente que almacenará información sobre estos
  * @author José Manuel Moreno Córdoba
