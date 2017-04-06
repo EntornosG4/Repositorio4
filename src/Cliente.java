@@ -134,13 +134,13 @@ public class Cliente {
         int numeroDNI = -1;
         if (dni.length() == 9) {
             numeroDNI = Integer.parseInt(dni.substring(0, 8));
-            if(calcularLetraDNI(numeroDNI).toUpperCase().equals(dni.substring(8).toUpperCase()))
+            if(calcularLetraDNI(numeroDNI, "").toUpperCase().equals(dni.substring(8).toUpperCase()))
                 valido = true;
         }
         return valido;
     }
 
-    private String calcularLetraDNI(int numeroDNI) {
+    private String calcularLetraDNI(int numeroDNI, String nuevoParametro) {
         int resto = numeroDNI % 23;
         String letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE", letra = null;
         try{
