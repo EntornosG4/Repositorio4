@@ -5,11 +5,11 @@
 public class Cliente {
 
     //Atributos de los objetos Cliente
-    private String nif;
-    private String nombre;
-    private String telefono;
-    private String direccion;
-    private double deuda;
+    private String id;
+    private String name;
+    private String phone;
+    private String address;
+    private double debt;
 
     /**
      * Constructor que recibe por parámetros los datos del cliente
@@ -21,49 +21,49 @@ public class Cliente {
      * @throws IllegalArgumentException Error cuando algunos de los parámetros recibidos no son válidos
      */
     public Cliente(String nif, String nombre, String telefono, String direccion, double deuda) throws IllegalArgumentException{
-        setNif(nif);
-        setNombre(nombre);
-        setTelefono(telefono);
-        setDireccion(direccion);
-        setDeuda(deuda);
+        setId(nif);
+        setName(nombre);
+        setPhone(telefono);
+        setAddress(direccion);
+        setDebt(deuda);
     }
     
     /**
      * Devuelve el NIF del cliente
      * @return NIF del cliente
      */
-    public String getNif() {
-        return nif;
+    public String getId() {
+        return id;
     }
 
     /**
      * Asigna el NIF a un cliente
-     * @param nif NIF del cliente
+     * @param id NIF del cliente
      * @throws IllegalArgumentException Error cuando se introduce un NIF inválido
      */
-    public void setNif(String nif) throws IllegalArgumentException {
-        if (comprobarDNI(nif))
-            this.nif = nif;
+    public void setId(String id) throws IllegalArgumentException {
+        if (comprobarDNI(id))
+            this.id = id;
         else
             throw new IllegalArgumentException("El NIF introducido no es válido.");
     }
 
     /**
-     * Devuelve el nombre del cliente
+     * Devuelve el name del cliente
      * @return Nombre del cliente
      */
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Asigna el nombre al cliente
-     * @param nombre Nombre del cliente
-     * @throws IllegalArgumentException Error cuando el nombre está vacío
+     * Asigna el name al cliente
+     * @param name Nombre del cliente
+     * @throws IllegalArgumentException Error cuando el name está vacío
      */
-    public void setNombre(String nombre) throws IllegalArgumentException {
-        if(!nombre.equals(""))
-            this.nombre = nombre;
+    public void setName(String name) throws IllegalArgumentException {
+        if(!name.equals(""))
+            this.name = name;
         else
             throw new IllegalArgumentException("El nombre no puede estar vacío.");
     }
@@ -72,18 +72,18 @@ public class Cliente {
      * Devuelve el teléfono del cliente
      * @return Teléfono del cliente
      */
-    public String getTelefono() {
-        return telefono;
+    public String getPhone() {
+        return phone;
     }
 
     /**
      * Asigna el teléfono del cliente
-     * @param telefono Teléfono del cliente
+     * @param phone Teléfono del cliente
      * @throws IllegalArgumentException Error cuando el número introducido no es válido.
      */
-    public void setTelefono(String telefono) throws IllegalArgumentException {
-        if(telefono.length() == 9 && Integer.parseInt(telefono.substring(0)) > 5)
-            this.telefono = telefono;
+    public void setPhone(String phone) throws IllegalArgumentException {
+        if(phone.length() == 9 && Integer.parseInt(phone.substring(0)) > 5)
+            this.phone = phone;
         else
             throw new IllegalArgumentException("El número de telefono no es válido.");
     }
@@ -92,38 +92,38 @@ public class Cliente {
      * Devuelve la dirección del cliente
      * @return Dirección del cliente
      */
-    public String getDireccion() {
-        return direccion;
+    public String getAddress() {
+        return address;
     }
 
     /**
      * Asigna la dirección del cliente
-     * @param direccion Dirección del cliente
+     * @param address Dirección del cliente
      * @throws IllegalArgumentException Error cuando la dirección está vacía
      */
-    public void setDireccion(String direccion) throws IllegalArgumentException {
-        if(!direccion.equals(""))
-            this.direccion = direccion;
+    public void setAddress(String address) throws IllegalArgumentException {
+        if(!address.equals(""))
+            this.address = address;
         else
             throw new IllegalArgumentException("La dirección no puede estar vacía.");
     }
 
     /**
-     * Devuelve la deuda del cliente
+     * Devuelve la debt del cliente
      * @return Deuda del cliente
      */
-    public double getDeuda() {
-        return deuda;
+    public double getDebt() {
+        return debt;
     }
 
     /**
      * Asigna la deudda del cliente
-     * @param deuda Deuda del cliente
-     * @throws IllegalArgumentException Error cuando la deuda del cliente es negativa
+     * @param debt Deuda del cliente
+     * @throws IllegalArgumentException Error cuando la debt del cliente es negativa
      */
-    public void setDeuda(double deuda) throws IllegalArgumentException {
-        if(deuda >= 0)
-            this.deuda = deuda;
+    public void setDebt(double debt) throws IllegalArgumentException {
+        if(debt >= 0)
+            this.debt = debt;
         else
             throw new IllegalArgumentException("La deuda no puede ser negativa");
     }
@@ -157,6 +157,6 @@ public class Cliente {
      */
     @Override
     public String toString() {
-        return "Cliente{" + "nif=" + nif + ", nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion + ", deuda=" + deuda + '}';
+        return "Cliente{" + "nif=" + id + ", nombre=" + name + ", telefono=" + phone + ", direccion=" + address + ", deuda=" + debt + '}';
     }
 }

@@ -17,20 +17,14 @@ public class Principal {
     public static void main(String[] args) {
         try{
             Cliente c = null;
-            Fichero miFichero = new Fichero();
+            Repositorio miFichero = new Repositorio();
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String menu = null, nif = null, nombre = null, telefono = null, direccion = null;
             double deuda = -1;
             boolean salir = false;
             do{
-                System.out.println("1. Añadir cliente.");
-                System.out.println("2. Listar clientes.");
-                System.out.println("3. Buscar clientes.");
-                System.out.println("4. Borrar cliente.");
-                System.out.println("5. Borrar fichero de clientes.");
-                System.out.println("6. Salir de la aplicación.");
-                System.out.print("Elige una opción: ");
-                menu = br.readLine();
+                
+                menu = mostrarMenu();
                 switch(menu){
                     case "1":
                         System.out.print("Introduce el NIF del cliente: ");
@@ -45,7 +39,7 @@ public class Principal {
                         deuda = Double.parseDouble(br.readLine());
                         try{
                             c = new Cliente(nif, nombre, telefono, direccion, deuda);
-                            miFichero.anadirCliente(c);
+                            miFichero.agregarCliente(c);
                         }
                         catch(FileNotFoundException ex){ System.err.println(ex.getMessage()); }
                         catch(IOException ex){ System.err.println(ex.getMessage()); }
@@ -105,5 +99,18 @@ public class Principal {
         for(Cliente c: array){
             System.out.println(c.toString());
         }
+    }
+    
+    public static String mostrarMenu() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("1. Añadir cliente.");
+                System.out.println("2. Listar clientes.");
+                System.out.println("3. Buscar clientes.");
+                System.out.println("4. Borrar cliente.");
+                System.out.println("5. Borrar fichero de clientes.");
+                System.out.println("6. Salir de la aplicación.");
+                System.out.print("Elige una opción: ");
+                String menu = br.readLine();
+                return menu;
     }
 }

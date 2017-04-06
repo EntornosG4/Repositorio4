@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Clase donde guardaremos un fichero y trabajaremos con él
  * @author José Manuel Moreno Córdoba
  */
-public class Fichero {
+public class Repositorio {
     
     //Fichero del objeto
     private File fichero = new File("clientes.dat");
@@ -21,7 +21,7 @@ public class Fichero {
      * Constructor por defecto de la clase fichero que inicializa el fichero
      * @throws IOException Error cuando no se puede crear el fichero
      */
-    public Fichero() throws IOException{
+    public Repositorio() throws IOException{
         if(!fichero.exists()){
             try{
                 fichero.createNewFile();
@@ -37,17 +37,17 @@ public class Fichero {
      * @throws FileNotFoundException Error cuando no se encuentra el fichero
      * @throws IOException Error cuando no se puede escribir en el fichero
      */
-    public void anadirCliente(Cliente c) throws FileNotFoundException, IOException{
+    public void agregarCliente(Cliente c) throws FileNotFoundException, IOException{
         if(!fichero.exists()) fichero.createNewFile();
         DataOutputStream dos = null;
         boolean salir = false;
         try{
             dos = new DataOutputStream(new FileOutputStream(fichero, true));
-            dos.writeUTF(c.getNif());
-            dos.writeUTF(c.getNombre());
-            dos.writeUTF(c.getTelefono());
-            dos.writeUTF(c.getDireccion());
-            dos.writeDouble(c.getDeuda());                    
+            dos.writeUTF(c.getId());
+            dos.writeUTF(c.getName());
+            dos.writeUTF(c.getPhone());
+            dos.writeUTF(c.getAddress());
+            dos.writeDouble(c.getDebt());                    
         } catch(FileNotFoundException ex){
             throw new FileNotFoundException("No se ha encontrado el archivo.");
         } catch(IOException ex){
@@ -103,7 +103,7 @@ public class Fichero {
             do{
                 try{
                     Cliente c = new Cliente(dis.readUTF(), dis.readUTF(), dis.readUTF(), dis.readUTF(), dis.readDouble());
-                    if(c.getNif().toUpperCase().equals(nif.toUpperCase()))
+                    if(c.getId().toUpperCase().equals(nif.toUpperCase()))
                         listaClientes.add(c);
                 } catch(EOFException ex){
                     salir = true;
@@ -139,13 +139,13 @@ public class Fichero {
                     do{
                         try{
                             Cliente c = new Cliente(dis.readUTF(), dis.readUTF(), dis.readUTF(), dis.readUTF(), dis.readDouble());
-                            if(!c.getNif().toUpperCase().equals(nif.toUpperCase())){
+                            if(!c.getId().toUpperCase().equals(nif.toUpperCase())){
                                 try{
-                                    dos.writeUTF(c.getNif());
-                                    dos.writeUTF(c.getNombre());
-                                    dos.writeUTF(c.getTelefono());
-                                    dos.writeUTF(c.getDireccion());
-                                    dos.writeDouble(c.getDeuda());
+                                    dos.writeUTF(c.getId());
+                                    dos.writeUTF(c.getName());
+                                    dos.writeUTF(c.getPhone());
+                                    dos.writeUTF(c.getAddress());
+                                    dos.writeDouble(c.getDebt());
                                 } catch(IOException ex){
                                     copiaCorrecta = false;
                                     throw new IOException("Error al escribir en el archivo.");
